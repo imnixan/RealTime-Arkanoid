@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class SettingsButton : MonoBehaviour
 {
-    [SerializeReference]
     private Sprite onSprite,
         offSprite;
 
@@ -28,6 +26,17 @@ public class SettingsButton : MonoBehaviour
 
     private void Init()
     {
+        InitialPrefString();
+        currentStatus = PlayerPrefs.GetString(
+            PlayerPrefsString,
+            StaticConstants.TurnedOnSettingsValue
+        );
+        InitialSprites();
+        SetSprite();
+    }
+
+    private void InitialPrefString()
+    {
         switch (buttonType)
         {
             case MenuManager.SettingsType.SoundSettings:
@@ -37,12 +46,16 @@ public class SettingsButton : MonoBehaviour
                 PlayerPrefsString = StaticConstants.VibroSettingsPrefs;
                 break;
         }
+    }
 
-        currentStatus = PlayerPrefs.GetString(
-            PlayerPrefsString,
-            StaticConstants.TurnedOnSettingsValue
+    private void InitialSprites()
+    {
+        onSprite = Resources.Load<Sprite>(
+            $"SettingsButtons/{PlayerPrefsString}{StaticConstants.TurnedOnSettingsValue}"
         );
-        SetSprite();
+        offSprite = Resources.Load<Sprite>(
+            $"SettingsButtons/{PlayerPrefsString}{StaticConstants.TurnedOffSettingsVaule}"
+        );
     }
 
     private void SetSprite()
