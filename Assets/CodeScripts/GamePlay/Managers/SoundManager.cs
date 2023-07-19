@@ -6,28 +6,56 @@ public class SoundManager : Manager
     [SerializeReference]
     private AudioClip[] explosions;
 
+    [SerializeReference]
+    private AudioClip shot,
+        bulletBounce,
+        endGame;
+
     private AudioSource soundPlayer;
 
     private void Start()
     {
         soundPlayer = gameObject.AddComponent<AudioSource>();
+        soundPlayer.volume = 0.6f;
     }
 
     protected override void Subscribe()
     {
         gm.MeteoritDestroyed += OnExplosion;
         gm.MeteoritFallen += OnMeteoritFallen;
+        gm.PlayerHadShot += OnPlayerShot;
+        gm.BulletHadBounce += OnBulletBounce;
+        gm.GameEnd += OnGameEnd;
     }
 
     protected override void Unsubscribe()
     {
         gm.MeteoritDestroyed -= OnExplosion;
         gm.MeteoritFallen -= OnMeteoritFallen;
+        gm.PlayerHadShot -= OnPlayerShot;
+        gm.BulletHadBounce -= OnBulletBounce;
+        gm.GameEnd -= OnGameEnd;
+    }
+
+    private void OnBulletBounce()
+    {
+        PlaySound(bulletBounce);
+    }
+
+    private void OnPlayerShot()
+    {
+        PlaySound(shot);
     }
 
     private void OnMeteoritFallen()
     {
         OnExplosion();
+        PlayVibration();
+    }
+
+    private void OnGameEnd()
+    {
+        PlaySound(endGame);
         PlayVibration();
     }
 

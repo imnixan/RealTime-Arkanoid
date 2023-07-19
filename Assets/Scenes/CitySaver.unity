@@ -12290,6 +12290,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 89e9c8b3f2844cc438b172d87cadd56b, type: 3}
   - {fileID: 8300000, guid: aef0ff3c98f612940a05d44b16ca3e3e, type: 3}
   - {fileID: 8300000, guid: 90363d24ef75a9742b0e2d51f96a79da, type: 3}
+  shot: {fileID: 8300000, guid: 41363a84e3336cd4c9c788a6c0aaefc9, type: 3}
+  bulletBounce: {fileID: 8300000, guid: 54f5e39cc2b86b84bbfd8df7153a10e2, type: 3}
+  endGame: {fileID: 8300000, guid: 20f8828c58551c14296d128b4022b22e, type: 3}
 --- !u!4 &1358338417
 Transform:
   m_ObjectHideFlags: 0

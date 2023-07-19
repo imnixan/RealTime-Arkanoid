@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class Walls : MonoBehaviour
 {
     public event UnityAction MeteoritEnter;
+    public event UnityAction BulletBounced;
 
     private void Awake()
     {
@@ -31,5 +32,10 @@ public class Walls : MonoBehaviour
             MeteoritEnter?.Invoke();
             collision.GetComponent<Meteorit>().Explode(false);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        BulletBounced?.Invoke();
     }
 }

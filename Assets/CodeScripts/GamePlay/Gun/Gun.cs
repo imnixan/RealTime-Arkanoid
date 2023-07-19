@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gun : MonoBehaviour
 {
+    public event UnityAction PlayerShoot;
+
     [SerializeReference]
     private GameObject bulletPrefab;
+
     private GunLaserSight gunLaserSight;
     private GunSight gunSight;
     private float shotsPerSeconds;
@@ -49,6 +53,7 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
+        PlayerShoot?.Invoke();
         Bullet bullet = Instantiate(
                 bulletPrefab,
                 gunLaserSight.GetStartPosition(),
