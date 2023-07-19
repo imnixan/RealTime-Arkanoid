@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunLaserSight : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GunLaserSight : MonoBehaviour
         rightCorner;
     private Gun gun;
     private GunSight gunSight;
+    private GameObject arrow;
+    private Image arrowImage;
 
     public void Init(RectTransform gunRt)
     {
@@ -21,6 +24,7 @@ public class GunLaserSight : MonoBehaviour
         gunSight = gunRt.GetComponentInChildren<GunSight>();
         InitLineRenderer();
         gunCorners = new Vector3[4];
+        InitArrow();
     }
 
     private void InitLineRenderer()
@@ -31,6 +35,19 @@ public class GunLaserSight : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.material = Resources.Load<Material>("LineRendererMat");
         lineRenderer.textureMode = LineTextureMode.Tile;
+        lineRenderer.sortingOrder = 6;
+    }
+
+    private void InitArrow()
+    {
+        arrow = Instantiate(new GameObject("arrow"), transform);
+        arrowImage = arrow.AddComponent<Image>();
+        arrowImage.sprite = Resources.Load<Sprite>("SightArrow");
+        arrowImage.raycastTarget = false;
+        arrowImage.SetNativeSize();
+        RectTransform arrowRect = arrow.GetComponent<RectTransform>();
+        arrowRect.pivot = new Vector2(0.5f, 1);
+        arrowRect.sizeDelta = arrowRect.sizeDelta / 2;
     }
 
     public void SetLaserStatus(bool turnedOn)
@@ -41,9 +58,11 @@ public class GunLaserSight : MonoBehaviour
     private void LateUpdate()
     {
         lineRenderer.enabled = turnedOn;
+        arrowImage.enabled = turnedOn;
         if (turnedOn)
         {
             SetupLine();
+            SetupArrow();
         }
     }
 
@@ -53,6 +72,12 @@ public class GunLaserSight : MonoBehaviour
         lineRenderer.endColor = lineRenderer.startColor;
         lineRenderer.SetPosition(0, GetStartPosition());
         lineRenderer.SetPosition(1, GetEndPoint());
+    }
+
+    private void SetupArrow()
+    {
+        arrow.transform.position = GetEndPoint();
+        arrowImage.color = gun.CanShootByTimer ? Color.white : Color.gray;
     }
 
     public Vector3 GetEndPoint()

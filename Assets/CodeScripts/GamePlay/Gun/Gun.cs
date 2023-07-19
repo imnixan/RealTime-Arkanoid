@@ -58,4 +58,11 @@ public class Gun : MonoBehaviour
             .GetComponent<Bullet>();
         bullet.BulletShot(gunLaserSight.GetEndPoint());
     }
+
+    private void OnGameEnd()
+    {
+        gunLaserSight.enabled = false;
+        gunSight.enabled = false;
+        this.enabled = false;
+    }
 }

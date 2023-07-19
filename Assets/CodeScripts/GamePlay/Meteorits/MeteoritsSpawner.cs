@@ -43,37 +43,24 @@ public class MeteoritsSpawner : MonoBehaviour
                 xPos++
             )
             {
+                spawnsPerSeconds = GlobalStat.GameSpeed * 0.6f;
                 int chanse = Random.Range(0, 10);
                 if (chanse > 7)
                 {
-                    spawnsPerSeconds = GlobalStat.GameSpeed * 0.6f;
                     Instantiate(
                             meteoritPrefab,
-                            new Vector2(xPos * meteoritWindowWidth, fieldCorners[1].y + 1),
-                            new Quaternion(0, 0, Random.Range(0, 360), 0),
+                            new Vector2(
+                                xPos * meteoritWindowWidth,
+                                fieldCorners[1].y + 1 + Random.Range(-0.3f, 0.3f)
+                            ),
+                            new Quaternion(),
                             transform
                         )
                         .GetComponent<Meteorit>()
                         .Init(meteoritsSprite[Random.Range(0, meteoritsSprite.Length)]);
                 }
             }
-
             yield return new WaitForSecondsRealtime(Timer);
         }
-    }
-
-    private void OnMeteoritDestroyed()
-    {
-        GlobalStat.GameSpeed += 0.01f;
-    }
-
-    private void OnEnable()
-    {
-        Meteorit.MeteoritDestroyed += OnMeteoritDestroyed;
-    }
-
-    private void OnDisable()
-    {
-        Meteorit.MeteoritDestroyed -= OnMeteoritDestroyed;
     }
 }

@@ -5,11 +5,12 @@ using UnityEngine.Events;
 
 public class Meteorit : MonoBehaviour
 {
-    public static event UnityAction MeteoritDestroyed;
+    public static event UnityAction<bool, Vector2> MeteoritDestroyed;
     private Rigidbody2D rb;
 
     public void Init(Sprite sprite)
     {
+        transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
         Image image = GetComponent<Image>();
         image.sprite = sprite;
         image.SetNativeSize();
@@ -33,7 +34,12 @@ public class Meteorit : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        MeteoritDestroyed?.Invoke();
+        Explode(true);
+    }
+
+    public void Explode(bool playerKill)
+    {
+        MeteoritDestroyed?.Invoke(playerKill, transform.position);
         Destroy(gameObject);
     }
 }

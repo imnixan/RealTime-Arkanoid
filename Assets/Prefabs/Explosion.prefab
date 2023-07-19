@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6331740603362358088
+--- !u!1 &4081523594511685308
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,28 +8,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6331740603362358089}
-  - component: {fileID: 6331740603362358095}
-  - component: {fileID: 6331740603362358094}
-  - component: {fileID: 1516083109807630127}
+  - component: {fileID: 4081523594511685311}
+  - component: {fileID: -1909429000067745115}
+  - component: {fileID: 4081523594511685313}
+  - component: {fileID: 4081523594511685310}
   m_Layer: 5
-  m_Name: MeteoritPrefab
-  m_TagString: Meteorit
+  m_Name: Explosion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6331740603362358089
+--- !u!224 &4081523594511685311
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6331740603362358088}
+  m_GameObject: {fileID: 4081523594511685308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -37,23 +37,40 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 118, y: 128}
+  m_SizeDelta: {x: 219, y: 198}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6331740603362358095
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6331740603362358088}
-  m_CullTransparentMesh: 1
---- !u!114 &6331740603362358094
+--- !u!114 &-1909429000067745115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6331740603362358088}
+  m_GameObject: {fileID: 4081523594511685308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76c3abc4e0f4cc42ad645c79f490b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionFrames:
+  - {fileID: 1404056229, guid: 78d89963c5b3ea2459337e7ec190d178, type: 3}
+  - {fileID: -1979359631, guid: 78d89963c5b3ea2459337e7ec190d178, type: 3}
+  - {fileID: -653246927, guid: 78d89963c5b3ea2459337e7ec190d178, type: 3}
+  - {fileID: 1927320930, guid: 78d89963c5b3ea2459337e7ec190d178, type: 3}
+--- !u!222 &4081523594511685313
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4081523594511685308}
+  m_CullTransparentMesh: 1
+--- !u!114 &4081523594511685310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4081523594511685308}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -67,7 +84,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a4d43c90300af7488f4e14a013558e4, type: 3}
+  m_Sprite: {fileID: 1404056229, guid: 78d89963c5b3ea2459337e7ec190d178, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -77,15 +94,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1516083109807630127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6331740603362358088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcdccac730d7eaa43b53b7420fbee266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
